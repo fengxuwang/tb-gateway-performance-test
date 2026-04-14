@@ -603,7 +603,7 @@ def generate_gateway_config(
 
             device_config = {
                 "deviceInfo": {
-                    "deviceNameExpression": "${{objectName}}",
+                    "deviceNameExpression": f"${{objectName}}",
                     "deviceProfileExpression": "default",
                     "deviceNameExpressionSource": "expression",
                     "deviceProfileExpressionSource": "constant",
