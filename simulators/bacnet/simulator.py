@@ -520,6 +520,7 @@ def generate_gateway_config(
     report_period: int = 10000,
     timeseries_report_strategy: str = None,
     timeseries_report_period: int = None,
+    log_level: str = "WARNING",
 ) -> dict:
     """Generate a ThingsBoard Gateway BACnet connector configuration.
 
@@ -533,6 +534,7 @@ def generate_gateway_config(
         report_period: Device-level report period in milliseconds (default: 10000)
         timeseries_report_strategy: Timeseries entry-level report strategy (default: report_strategy)
         timeseries_report_period: Timeseries entry-level report period in milliseconds (default: report_period)
+        log_level: Logging level for the connector (default: WARNING)
 
     Returns:
         Dictionary containing connector configuration(s)
@@ -567,6 +569,7 @@ def generate_gateway_config(
                 "devicesDiscoverPeriodSeconds": 30,
             },
             "devices": [],
+            "logLevel": log_level,
         }
 
         for sim in connector_devices:
@@ -643,6 +646,7 @@ def generate_gateway_config_from_device_configs(
     report_period: int = 10000,
     timeseries_report_strategy: str = None,
     timeseries_report_period: int = None,
+    log_level: str = "WARNING",
 ) -> dict:
     """Generate gateway connector configurations from device configs (without simulators).
 
@@ -659,6 +663,7 @@ def generate_gateway_config_from_device_configs(
         report_period: Device-level report period in milliseconds (default: 10000)
         timeseries_report_strategy: Timeseries entry-level report strategy (default: report_strategy)
         timeseries_report_period: Timeseries entry-level report period in milliseconds (default: report_period)
+        log_level: Logging level for the connector (default: WARNING)
     """
     connectors = []
 
@@ -690,6 +695,7 @@ def generate_gateway_config_from_device_configs(
                 "devicesDiscoverPeriodSeconds": 30,
             },
             "devices": [],
+            "logLevel": log_level,
         }
 
         for cfg in connector_device_configs:
@@ -820,6 +826,7 @@ class BACnetSimulator(BaseSimulator):
         report_period: int = 10000,
         timeseries_report_strategy: str = None,
         timeseries_report_period: int = None,
+        log_level: str = "WARNING",
     ) -> dict:
         """Generate Gateway connector configuration for BACnet devices."""
         return generate_gateway_config(
@@ -832,6 +839,7 @@ class BACnetSimulator(BaseSimulator):
             report_period=report_period,
             timeseries_report_strategy=timeseries_report_strategy,
             timeseries_report_period=timeseries_report_period,
+            log_level=log_level,
         )
 
     @classmethod
@@ -851,6 +859,7 @@ class BACnetSimulator(BaseSimulator):
         report_period: int = 10000,
         timeseries_report_strategy: str = None,
         timeseries_report_period: int = None,
+        log_level: str = "WARNING",
     ) -> dict:
         """Generate gateway configuration from device configs (without simulators)."""
         return generate_gateway_config_from_device_configs(
@@ -863,4 +872,5 @@ class BACnetSimulator(BaseSimulator):
             report_period=report_period,
             timeseries_report_strategy=timeseries_report_strategy,
             timeseries_report_period=timeseries_report_period,
+            log_level=log_level,
         )

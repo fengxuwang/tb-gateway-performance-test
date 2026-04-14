@@ -14,7 +14,7 @@ from simulators.utils import get_local_ipv4
 
 # Set up logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
 
@@ -99,9 +99,9 @@ def add_common_arguments(parser):
         help="仅生成 Gateway 配置文件并退出",
     )
     parser.add_argument(
-        "--log-level", type=str, default="INFO",
+        "--log-level", type=str, default="WARNING",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-        help="日志级别 (默认: INFO)",
+        help="日志级别 (默认: WARNING)",
     )
 
 
@@ -137,6 +137,7 @@ async def run_simulation_loop(
             report_period=args.report_period,
             timeseries_report_strategy=args.timeseries_report_strategy,
             timeseries_report_period=args.timeseries_report_period,
+            log_level=args.log_level,
         )
         await handle_config_only_mode(
             gateway_config,
@@ -159,6 +160,7 @@ async def run_simulation_loop(
         report_period=args.report_period,
         timeseries_report_strategy=args.timeseries_report_strategy,
         timeseries_report_period=args.timeseries_report_period,
+        log_level=args.log_level,
     )
 
     config_path = await save_gateway_configs(
