@@ -557,9 +557,8 @@ def generate_gateway_config(
                 "objectName": f"TB_gateway_connector_{connector_idx + 1}",
                 "host": gateway_ip,
                 "port": str(connector_port),
-                "mask": "24",
                 "objectIdentifier": connector_object_id,
-                "maxApduLengthAccepted": 65535,  # Match simulator APDU size
+                "maxApduLengthAccepted": 1476,  # Match simulator APDU size
                 "segmentationSupported": "segmentedBoth",
                 "vendorIdentifier": 15,
                 "deviceDiscoveryTimeoutInSec": 5,
